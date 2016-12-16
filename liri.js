@@ -1,18 +1,22 @@
+//Include the requires
 var twitterKeys = require('./keys.js');
 var Twitter = require('twitter');
 var spotify = require('spotify');
 var request = require('request');
 var fs = require('fs');
 
+//Takes the process.argv array and stores its elements in variables
 var parameters = process.argv;
 var command = parameters[2];
 var commandParametersArray = parameters.slice(3);
 var commandParameters;
 
+//Function calls needed for this app
 editCommandParameters();
 processParameters();
 appendCommands();
 
+//Removes special characters for movie titles and songs and joins each word with a +
 function editCommandParameters() {
     for (var i = 0; i < commandParametersArray.length; i++) {
         commandParametersArray[i] = commandParametersArray[i].replace(/[^a-zA-Z0-9 ]/g, '');
@@ -20,6 +24,7 @@ function editCommandParameters() {
     commandParameters = commandParametersArray.join('+');
 }
 
+//Processes the command to run its corresponding function
 function processParameters() {
     if (command === 'my-tweets') {
         myTweets();
@@ -58,8 +63,8 @@ function myTweets() {
 }
 // * This will show the following information about the song in your 
 // terminal/bash window
-//     * Artist(s)
 //     * The song's name
+//     * Artist(s)
 //     * A preview link of the song from Spotify
 //     * The album that the song is from
 
@@ -87,8 +92,10 @@ function spotifyThisSong() {
             for (var i = 0; i < artists.length; i++) {
                 console.log((i + 1) + ': ' + artists[i].name);
             }
+            //Spotify link
             var link = data.tracks.items[0].external_urls.spotify;
             console.log('Spotify link: ' + link);
+            //Album name
             var album = data.tracks.items[0].album.name;
             console.log('This track is found on the album: ' + album);
         });
@@ -106,9 +113,9 @@ function spotifyThisSong() {
 //     * Rotten Tomatoes Rating.
 //     * Rotten Tomatoes URL.
 
-// * If the user doesn't type a movie in, the program will output data for the 
-// movie 'Mr. Nobody.'
 function movieThis() {
+    // * If the user doesn't type a movie in, the program will output data for the 
+    // movie 'Mr. Nobody.'
     if (parameters.splice(2).length === 1 || commandParameters === undefined) {
         commandParameters = 'Mr+Nobody';
     }
