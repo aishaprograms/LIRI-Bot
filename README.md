@@ -14,7 +14,7 @@ Enter one of the following commands
 - node liri.js do-what-it-says
 ```
 
-### Prerequisities
+### Prerequisites
 
 What to install and how for local development and testing purposes
 
