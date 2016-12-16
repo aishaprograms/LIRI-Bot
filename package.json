@@ -1,0 +1,34 @@
+{
+    "name": "liri-bot",
+    "version": "1.0.0",
+    "description": "LIRI is a Language Interpretation and Recognition Interface. It's a command line node app that takes in parameters and gives back data.",
+    "main": "keys.js",
+    "dependencies": {
+        "request": "2.79.0",
+        "spotify": "0.3.0",
+        "twitter": "1.7.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "node liri.js do-what-it-says"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aishaprograms/LIRI-Bot.git"
+    },
+    "keywords": [
+        "node",
+        "liri",
+        "require",
+        "twitter",
+        "spotify",
+        "omdb",
+        "fs"
+    ],
+    "author": "Aisha Ahmad",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/aishaprograms/LIRI-Bot/issues"
+    },
+    "homepage": "https://github.com/aishaprograms/LIRI-Bot#readme"
+}
