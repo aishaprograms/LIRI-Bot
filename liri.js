@@ -8,21 +8,15 @@ var fs = require('fs');
 //Takes the process.argv array and stores its elements in variables
 var parameters = process.argv;
 var command = parameters[2];
-var commandParametersArray = parameters.slice(3);
 var commandParameters;
+//Regex removes unwanted special characters for movie titles and songs
+if (parameters[3] !== undefined) {
+    commandParameters = parameters[3].replace(/[^a-zA-Z0-9'" ]/g, '');
+}
 
 //Function calls needed for this app
-editCommandParameters();
 processParameters();
 appendCommands();
-
-//Removes special characters for movie titles and songs and joins each word with a +
-function editCommandParameters() {
-    for (var i = 0; i < commandParametersArray.length; i++) {
-        commandParametersArray[i] = commandParametersArray[i].replace(/[^a-zA-Z0-9 ]/g, '');
-    }
-    commandParameters = commandParametersArray.join('+');
-}
 
 //Processes the command to run its corresponding function
 function processParameters() {
@@ -73,7 +67,7 @@ function myTweets() {
 function spotifyThisSong() {
     //if parameters, as in the track name, were not given after the command
     //set the command parameters to "The Sign" by Ace of Base
-    if (parameters.splice(2).length === 1 || commandParameters === undefined) {
+    if (commandParameters === undefined) {
         commandParameters = 'The Sign Ace of Base';
     }
     spotify.search({ type: 'track', query: commandParameters },
@@ -116,7 +110,7 @@ function spotifyThisSong() {
 function movieThis() {
     // * If the user doesn't type a movie in, the program will output data for the 
     // movie 'Mr. Nobody.'
-    if (parameters.splice(2).length === 1 || commandParameters === undefined) {
+    if (commandParameters === undefined) {
         commandParameters = 'Mr+Nobody';
     }
     var queryUrl = 'http://www.omdbapi.com/?t=' + commandParameters +
@@ -161,7 +155,12 @@ function doWhatItSays() {
 // to a .txt file called log.txt.
 // Make sure you append each command you run to the log.txt file.
 function appendCommands() {
-    var logText = command + ' ' + commandParameters + ',';
+    var logText;
+    if (commandParameters !== undefined) {
+        logText = command + ' ' + commandParameters + ',';
+    } else {
+        logText = command + ',';
+    }
     fs.appendFile('log.txt', logText, function(error) {
         if (error) {
             return console.log(error);
