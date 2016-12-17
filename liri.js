@@ -20,6 +20,11 @@ appendCommands();
 
 //Processes the command to run its corresponding function
 function processParameters() {
+    if (parameters.length > 4) {
+        console.log('Warning: you must format the movie name or song name in quotation marks');
+        console.log('e.g. "node liri.js movie this "mr. nobody""');
+        return;
+    }
     if (command === 'my-tweets') {
         myTweets();
     } else if (command === 'spotify-this-song') {
@@ -155,6 +160,9 @@ function doWhatItSays() {
 // to a .txt file called log.txt.
 // Make sure you append each command you run to the log.txt file.
 function appendCommands() {
+    if (parameters.length > 4) {
+        return;
+    }
     var logText;
     if (commandParameters !== undefined) {
         logText = command + ' ' + commandParameters + ',';
