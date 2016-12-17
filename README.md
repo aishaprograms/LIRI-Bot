@@ -7,10 +7,11 @@ LIRI is a Language Interpretation and Recognition Interface. It's a command line
 ## Getting Started
 
 Enter one of the following commands
+Note: the song name and movie name must be in quotes
 ```
 - node liri.js my-tweets
 - node liri.js spotify-this-song '<song name>'
-- node liri.js movie-this '<movie name here>'
+- node liri.js movie-this '<movie name>'
 - node liri.js do-what-it-says
 ```
 
