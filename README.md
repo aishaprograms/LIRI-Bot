@@ -15,7 +15,10 @@ Note: the song name and movie name must be in quotes
 - node liri.js do-what-it-says
 ```
 
-### Prerequisites
+## Screenshots
+![Screenshot of liri bot tweets](img/liri-app-tweets.gif)
+
+## Prerequisites
 
 What to install and how for local development and testing purposes
 
